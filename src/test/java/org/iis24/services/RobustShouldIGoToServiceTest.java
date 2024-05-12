@@ -65,6 +65,8 @@ public class RobustShouldIGoToServiceTest {
     }
     @Test
      void shouldReturnFalseWhenAverageOfProbabilitiesAndTotalAmountOfRainAreEqualToThresholds() {
+        GPSCoordinates coords = new GPSCoordinates(0,0);
+        when(mapServiceMock.getCoordinates(anyString())).thenReturn(coords);
         robustShouldIGoToService.setRainProbabilityThreshold(50);
         robustShouldIGoToService.setRainAmountThreshold(10);
         when(weatherServiceMock.rainProbability(any(GPSCoordinates.class), any(LocalDate.class))).thenReturn(50.0);
